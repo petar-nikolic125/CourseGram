@@ -1,6 +1,6 @@
-# GramCourses Frontend
+# GramCourses Frontend – Vite + React + Tailwind
 
-This project is a Vite powered React + TypeScript app styled with Tailwind CSS. It showcases a landing page and additional pages with routing.
+This project is a Vite-powered React + TypeScript app styled with Tailwind CSS. It showcases a landing page and additional pages with routing.
 
 ## Available Scripts
 
