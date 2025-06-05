@@ -3,27 +3,12 @@ import type { FC } from "react";
 import { PhoneMockup } from "./PhoneMockup";
 import { LiveCounter } from "./LiveCounter";
 import { VideoModal } from "./VideoModal";
-import { SeenOn } from "./SeenOn";
 import { StickyCTA } from "./StickyCTA";
-import { VouchSection } from "./VouchSection";
 
 const Hero: FC = () => (
     <div className="bg-page-gradient bg-fixed text-white min-h-screen relative">
         {/* ─── HERO SECTION ─────────────────────────────────────────────────────── */}
-        <section className="hero-section h-screen w-screen overflow-hidden">
-            {/* HEADER */}
-            <header className="absolute inset-x-0 top-0 px-4 md:px-16 py-6 flex justify-between items-center z-30">
-                <h1 className="hero-nav__logo">GramCourses</h1>
-                <nav>
-                    <ul className="hero-nav__list">
-                        {["Features", "Pricing", "Creators"].map((item) => (
-                            <li key={item} className="hero-nav__item">
-                                {item}
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
-            </header>
+        <section className="hero-section h-screen w-screen overflow-hidden pt-24">
 
             {/* MAIN CONTENT */}
             <div className="hero-container px-4 md:px-16 flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0 relative z-20">
@@ -50,10 +35,6 @@ const Hero: FC = () => (
             transition
           " />
 
-                    {/* Seen On Logos */}
-                    <div className="mt-4 opacity-80 hover:opacity-100 transition-opacity">
-                        <SeenOn />
-                    </div>
 
                     {/* Primary CTA */}
                     <button className="hero-cta mt-6 focus:ring-4 focus:ring-accent1/50">
@@ -104,9 +85,6 @@ const Hero: FC = () => (
         transition
       " />
         </section>
-
-        {/* ─── VOUCH / TRUST SECTION ──────────────────────────────────────────────── */}
-        <VouchSection />
     </div>
 );
 
