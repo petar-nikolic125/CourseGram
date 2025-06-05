@@ -12,7 +12,7 @@
     "forceConsistentCasingInFileNames": true,
 
     // ← add this so TS knows about Vite's injected globals
-    "types": ["vite/client"]
+    "types": ["vite/client", "jest"]
   },
   "include": [
     // your source files…

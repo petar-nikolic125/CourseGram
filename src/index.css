@@ -53,6 +53,9 @@
         text-white/90 hover:text-violet-300
         transition-colors cursor-pointer;
     }
+    .hero-nav__menu-btn {
+        @apply text-white focus:outline-none;
+    }
 
     /* Content */
     .hero-content {
