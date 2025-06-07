@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setBasics } from "./wizardSlice";
+import type { RootState } from "../../store";
 import { FieldGroup } from "../../components/FieldGroup";
 import { Button } from "../../components/ui/Button";
 import { motion } from "framer-motion";
@@ -11,9 +12,18 @@ interface Props {
 
 export function BusinessInfoStep({ onNext }: Props) {
   const dispatch = useDispatch();
+  const basics = useSelector((s: RootState) => s.wizard.basics);
   const [niche, setNiche] = useState("");
   const [productType, setProductType] = useState("");
   const [targetPriceRange, setTargetPriceRange] = useState("");
+
+  useEffect(() => {
+    if (basics) {
+      setNiche(basics.niche);
+      setProductType(basics.productType);
+      setTargetPriceRange(basics.targetPriceRange);
+    }
+  }, [basics]);
 
   const handleNext = () => {
     dispatch(setBasics({ niche, productType, targetPriceRange }));

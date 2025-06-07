@@ -1,11 +1,9 @@
-export interface Basics {
-  niche: string;
-  productType: string;
-  targetPriceRange: string;
-}
+import type { Basics, PricingTier } from "../../types/business";
+
+export type { Basics };
 
 export interface PricingData {
-  tiers: Array<{ label: string; price: number }>;
+  tiers: PricingTier[];
 }
 
 export interface MarketingData {

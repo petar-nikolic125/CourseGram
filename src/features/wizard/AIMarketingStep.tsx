@@ -18,6 +18,7 @@ export function AIMarketingStep({ onNext, onBack }: Props) {
   const dispatch = useDispatch();
   const basics = useSelector((s: RootState) => s.wizard.basics);
   const pricing = useSelector((s: RootState) => s.wizard.pricing);
+  const marketing = useSelector((s: RootState) => s.wizard.marketing);
   const [generate, { data, isLoading }] = useGenerateMarketingMutation();
   const [captions, setCaptions] = useState<string[]>([]);
   const [hashtags, setHashtags] = useState<string[]>([]);
@@ -27,10 +28,14 @@ export function AIMarketingStep({ onNext, onBack }: Props) {
   useWizardGuard(2);
 
   useEffect(() => {
-    if (basics && pricing) {
+    if (marketing) {
+      setCaptions(marketing.captions);
+      setHashtags(marketing.hashtags);
+      setTimes(marketing.bestTimes || []);
+    } else if (basics && pricing) {
       generate({ basics, pricing });
     }
-  }, [basics, pricing, generate]);
+  }, [marketing, basics, pricing, generate]);
 
   useEffect(() => {
     if (data) {

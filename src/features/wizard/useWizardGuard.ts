@@ -10,8 +10,8 @@ export function useWizardGuard(step: number) {
   );
 
   useEffect(() => {
-    if (step > 0 && !basics) navigate("/wizard");
-    else if (step > 1 && !pricing) navigate("/wizard");
-    else if (step > 2 && !marketing) navigate("/wizard");
+    if (step >= 1 && !basics) navigate("/wizard/0");
+    else if (step >= 2 && !pricing) navigate("/wizard/1");
+    else if (step >= 3 && !marketing) navigate("/wizard/2");
   }, [step, basics, pricing, marketing, navigate]);
 }
