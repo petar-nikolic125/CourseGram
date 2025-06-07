@@ -137,7 +137,7 @@ export default function Hero() {
           <Button
             size="lg"
             aria-label="Start your free GramCourses store now in under 4 minutes"
-            onClick={() => navigate("/wizard")}
+            onClick={() => navigate("/wizard/0")}
             className="
               bg-gradient-to-r from-insta-pink via-insta-purple to-insta-blue
               hover:from-insta-yellow hover:to-insta-orange

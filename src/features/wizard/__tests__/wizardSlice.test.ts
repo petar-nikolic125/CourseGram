@@ -1,4 +1,10 @@
-import { wizardSlice, setBasics, setPricing, reset } from "../wizardSlice";
+import {
+  wizardSlice,
+  setBasics,
+  setPricing,
+  setMarketing,
+  reset,
+} from "../wizardSlice";
 
 const reducer = wizardSlice.reducer;
 
@@ -13,6 +19,22 @@ describe("wizardSlice", () => {
       }),
     );
     expect(state.basics?.niche).toBe("fitness");
+  });
+
+  it("sets pricing", () => {
+    const state = reducer(
+      undefined,
+      setPricing({ tiers: [{ label: "pro", price: 10 }] }),
+    );
+    expect(state.pricing?.tiers[0].label).toBe("pro");
+  });
+
+  it("sets marketing", () => {
+    const state = reducer(
+      undefined,
+      setMarketing({ captions: ["hi"], hashtags: ["#x"] }),
+    );
+    expect(state.marketing?.captions[0]).toBe("hi");
   });
 
   it("resets state", () => {

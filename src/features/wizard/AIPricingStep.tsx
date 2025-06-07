@@ -16,6 +16,7 @@ interface Props {
 export function AIPricingStep({ onNext, onBack }: Props) {
   const dispatch = useDispatch();
   const basics = useSelector((s: RootState) => s.wizard.basics);
+  const pricing = useSelector((s: RootState) => s.wizard.pricing);
   const [generatePricing, { data, isLoading }] = useGeneratePricingMutation();
   const [tiers, setTiers] = useState<Array<{ label: string; price: number }>>(
     [],
@@ -23,10 +24,12 @@ export function AIPricingStep({ onNext, onBack }: Props) {
   useWizardGuard(1);
 
   useEffect(() => {
-    if (basics) {
+    if (pricing) {
+      setTiers(pricing.tiers);
+    } else if (basics) {
       generatePricing(basics);
     }
-  }, [basics, generatePricing]);
+  }, [pricing, basics, generatePricing]);
 
   useEffect(() => {
     if (data) {

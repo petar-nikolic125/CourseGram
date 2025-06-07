@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { setStatus } from "./wizardSlice";
 import type { RootState } from "../../store";
 import { useWizardGuard } from "./useWizardGuard";
+import { useStartSimMutation } from "../simulator/simApi";
+import { setSession } from "../simulator/simSlice";
 
 interface Props {
   onBack: () => void;
@@ -16,6 +18,7 @@ export function ReviewPublishStep({ onBack }: Props) {
   const { basics, pricing, marketing } = useSelector(
     (s: RootState) => s.wizard,
   );
+  const [startSim] = useStartSimMutation();
   useWizardGuard(3);
 
   const handlePublish = async () => {
@@ -25,6 +28,8 @@ export function ReviewPublishStep({ onBack }: Props) {
       body: JSON.stringify({ basics, pricing, marketing }),
     });
     dispatch(setStatus("published"));
+    const res = await startSim({ basics: basics! }).unwrap();
+    dispatch(setSession({ simId: res.simId, weekPlan: res.weekPlan, forecast: res.forecast }));
     navigate("/dashboard");
   };
 
